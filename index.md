@@ -1,4 +1,3 @@
 ---
-title: Architecture Project
+title: Welcome to my blog!
 ---
-This is a test file 
