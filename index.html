@@ -3,232 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Pavilion</title>
+    <title>The Pavilion - J. Chojnacki</title>
+    
+    <!-- 3. Favicon and SEO Tags (NEW) -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <meta name="description" content="Portfolio of Jakub Chojnacki – The Pavilion project, architectural visualizations and drawings.">
+    <meta name="author" content="Jakub Chojnacki">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
     <style>
         /* --- GLOBAL RESET & SETUP --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
             background-color: #000000;
             color: #FFFFFF;
             font-family: 'Inter', sans-serif;
             font-weight: 300;
-            scroll-snap-type: y mandatory;
-            overflow-y: scroll;
-            height: 100vh;
-        }
-
-        /* --- TYPOGRAPHY & LINKS --- */
-        h1, h2, h3 {
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        h1 {
-            font-size: 1.2rem;
-            margin-bottom: 1.5rem;
-        }
-
-        h2 {
-            font-size: 1rem;
-            margin-bottom: 4rem;
-            text-align: center;
-        }
-
-        a {
-            text-decoration: none;
-            transition: color 0.3s ease, font-weight 0.3s ease;
-        }
-
-        /* --- HEADER & NAVIGATION (REVISED) --- */
-        .main-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            padding: 3rem;
-            z-index: 100;
-            display: flex;
-            flex-direction: column;
         }
         
-        .main-header h1 a {
-            color: #FFFFFF;
-        }
+        /* --- MINIMALIST SCROLLBAR --- */
+        body::-webkit-scrollbar { width: 10px; }
+        body::-webkit-scrollbar-track { background: #000000; }
+        body::-webkit-scrollbar-thumb { background-color: #ffffff; border-radius: 0; border: 2px solid #000000; }
+        html { scrollbar-width: thin; scrollbar-color: #ffffff #000000; }
 
-        .main-header nav ul {
-            list-style-type: none;
+        /* --- TYPOGRAPHY & LINKS --- */
+        h1, h2, h3 { font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; }
+        h1 { font-size: 1.2rem; margin-bottom: 1.5rem; }
+        h2 { font-size: 1.5rem; margin-bottom: 2rem; text-align: center; }
+        h3 {
+            font-size: 1rem; text-align: center;
+            margin-top: 10rem;
+            margin-bottom: 4rem;
+            color: #cccccc;
+            scroll-margin-top: 5rem; /* Ensures title isn't hidden by header on jump */
         }
+        a { text-decoration: none; transition: color 0.3s ease, font-weight 0.3s ease; }
 
-        .main-header nav li {
-            margin-bottom: 0.5rem;
-            font-size: 0.8rem;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
+        /* --- HEADER & NAVIGATION --- */
+        .main-header {
+            position: fixed; top: 0; left: 0;
+            padding: 3rem; z-index: 100;
+            display: flex; flex-direction: column;
         }
-
-        .main-header nav a {
-            color: #999999; /* Dimmed color for inactive links */
-        }
-
-        .main-header nav a:hover,
-        .main-header nav a.active {
-            color: #FFFFFF; /* Bright white for active/hover links */
-            font-weight: 500;
-        }
+        .main-header h1 a { color: #FFFFFF; }
+        .main-header nav ul { list-style-type: none; }
+        .main-header nav li { margin-bottom: 0.5rem; font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; }
+        .main-header nav a { color: #999999; }
+        .main-header nav a:hover, .main-header nav a.active { color: #FFFFFF; font-weight: 500; }
 
         /* --- SECTION STYLING --- */
         section {
-            width: 100%;
-            height: 100vh;
-            scroll-snap-align: start;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 6rem 3rem;
-            overflow-y: auto; /* Allow scrolling within sections if content overflows */
+            width: 100%; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; padding: 3rem;
         }
+        #hero { padding-top: 8rem; padding-bottom: 4rem; }
+        #info { padding-top: 0; padding-bottom: 6rem; }
+        
+        .content-wrapper { max-width: 1200px; width: 100%; }
 
-        /* HERO SECTION (REVISED) --- */
-        #hero .hero-content img {
-            max-width: 70vw; /* Much bigger */
-            max-height: 70vh;
-            width: auto;
-            height: auto;
-            object-fit: contain;
+        /* --- HERO SECTION --- */
+        .hero-container {
+            width: 100%; display: flex; flex-direction: column;
+            align-items: center; gap: 1rem;
         }
-
-        /* --- GALLERY & GRID LAYOUTS (REVISED) --- */
-        .gallery-grid-full, .gallery-grid-two, .gallery-vertical {
-            display: grid;
-            width: 100%;
-            height: auto;
+        .hero-container img {
+            max-width: 80vw; max-height: 75vh;
+            width: auto; height: auto;
+            object-fit: contain; cursor: pointer;
         }
-
-        .gallery-grid-full {
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            max-width: 1400px;
-        }
-
-        .gallery-grid-two {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-            max-width: 1000px;
+        .hero-caption {
+            font-size: 0.7rem; text-transform: uppercase;
+            letter-spacing: 0.1em; color: #999;
         }
         
-        /* New style for vertical drawings */
+        /* --- VERTICAL GALLERY LAYOUT --- */
         .gallery-vertical {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 3rem; /* Space between vertical images */
-            max-width: 1000px;
+            display: flex; flex-direction: column; align-items: center;
+            gap: 5rem; width: 100%;
         }
-
-        .gallery-grid-full img,
-        .gallery-grid-two img,
         .gallery-vertical img {
-            width: 100%;
-            max-width: 80vw; /* Limit drawing width on large screens */
-            height: auto;
-            object-fit: contain;
-            cursor: pointer; /* Indicates images are clickable */
-            transition: transform 0.3s ease;
+            width: 100%; max-width: 1200px;
+            height: auto; object-fit: contain; cursor: pointer;
+            transition: transform 0.3s ease, opacity 0.3s ease;
         }
+        .gallery-vertical.plans img, .gallery-vertical.details img { max-width: 1000px; }
+        .gallery-vertical img:hover { transform: scale(1.02); opacity: 0.9; }
 
-        .gallery-grid-full img:hover,
-        .gallery-grid-two img:hover,
-        .gallery-vertical img:hover {
-            transform: scale(1.02); /* Subtle hover effect */
+        /* --- INFO PANEL --- */
+        .info-panel {
+            max-width: 600px; margin: 0 auto;
+            text-align: center; line-height: 1.7;
         }
+        .info-panel p { margin-bottom: 1rem; color: #ccc; }
+        .info-panel strong { font-weight: 500; color: #fff; }
+        .info-panel .description {
+            margin-top: 3rem; color: #bbbbbb; text-align: justify;
+            border-top: 1px solid #444; padding-top: 2rem;
+        }
+        .info-panel p:last-child { margin-bottom: 0; }
 
-        /* --- INFO & ABOUT SECTIONS --- */
-        .info-content {
-            max-width: 600px;
-            text-align: center;
-            line-height: 1.7;
-        }
-
-        .info-content p {
-            margin-bottom: 1rem;
-            color: #ccc;
-        }
-        .info-content strong {
-            font-weight: 500;
-            color: #fff;
-        }
-
-        /* --- LIGHTBOX (NEW) --- */
+        /* --- LIGHTBOX --- */
         .lightbox {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 1000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.95); z-index: 1000; display: flex;
+            justify-content: center; align-items: center;
             cursor: pointer;
-            visibility: hidden; /* Use visibility and opacity for transitions */
-            opacity: 0;
+            visibility: hidden; opacity: 0;
             transition: visibility 0s 0.3s, opacity 0.3s ease-in-out;
         }
-        
         .lightbox.active {
-            visibility: visible;
-            opacity: 1;
+            visibility: visible; opacity: 1;
             transition: visibility 0s, opacity 0.3s ease-in-out;
         }
-        
         .lightbox img {
-            display: block;
-            max-width: 90%;
-            max-height: 90%;
-            object-fit: contain;
-            cursor: default; /* Keep default cursor on the image itself */
+            display: block; max-width: 90%; max-height: 90%;
+            object-fit: contain; cursor: pointer;
         }
         
-        .lightbox-close {
-            position: absolute;
-            top: 2rem;
-            right: 3rem;
-            color: #fff;
-            font-size: 2.5rem;
-            font-weight: 300;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .lightbox-close:hover {
-            transform: scale(1.1);
-        }
-
-        /* --- RESPONSIVE ADJUSTMENTS --- */
+        /* --- 2. Mobile Usability (NEW) --- */
         @media (max-width: 768px) {
             .main-header {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
                 padding: 1.5rem;
+                background-color: rgba(0, 0, 0, 0.8);
+                backdrop-filter: blur(5px);
             }
-            section {
-                padding: 6rem 1.5rem;
+            .main-header h1 {
+                margin-bottom: 0;
             }
-            .gallery-grid-full, .gallery-grid-two {
-                grid-template-columns: 1fr;
+            .main-header nav ul {
+                display: flex;
+                flex-direction: row;
+                gap: 1.5rem; /* Space between nav items */
+            }
+            .main-header nav li {
+                margin-bottom: 0;
+            }
+            /* Adjust padding on top-level sections to avoid content hiding under the new header */
+            #hero {
+                padding-top: 10rem;
             }
         }
     </style>
@@ -241,161 +162,203 @@
         <nav>
             <ul>
                 <li><a href="#visualizations">VISUALIZATIONS</a></li>
-                <li><a href="#drawings">TECHNICAL DRAWINGS</a></li>
-                <li><a href="#info">INFO</a></li>
+                <li><a href="#facades">FACADES</a></li>
+                <li><a href="#sections">SECTIONS</a></li>
+                <li><a href="#plans">PLANS</a></li>
+                <li><a href="#details">DETAILS</a></li>
+                <li><a href="#sketches">SKETCHES</a></li>
                 <li><a href="#about">ABOUT</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <!-- HERO SECTION -->
+        <!-- 1. HERO SECTION -->
         <section id="hero">
-            <div class="hero-content">
-                <img src="images/sketch-main.png" alt="Architectural sketch of the Pavilion">
+            <div class="hero-container">
+                <!-- 4. Added loading="lazy" -->
+                <img src="images/sketch-main.png" loading="lazy" alt="Architectural sketch of the Pavilion" class="expandable">
+                <span class="hero-caption">Building Close Up</span>
             </div>
         </section>
 
-        <!-- VISUALIZATIONS SECTION -->
-        <section id="visualizations" class="content-section">
-            <h2>VISUALIZATIONS</h2>
-            <div class="gallery-grid-full">
-                <img src="images/viz-01.jpg" alt="Visualization of the Pavilion exterior" class="expandable">
-                <img src="images/viz-02.jpg" alt="Visualization of the Pavilion interior" class="expandable">
-                <img src="images/viz-03.jpg" alt="Visualization of the Pavilion at dusk" class="expandable">
-            </div>
-        </section>
-
-        <!-- CLOSE-UPS SECTION -->
-        <section id="closeups" class="content-section">
-             <h2>CLOSE-UPS</h2>
-            <div class="gallery-grid-two">
-                <img src="images/closeup-01.jpg" alt="Detail shot of the Pavilion materials" class="expandable">
-                <img src="images/closeup-02.jpg" alt="Close-up of a window detail" class="expandable">
-            </div>
-        </section>
-
-        <!-- DRAWINGS SECTION (REVISED) -->
-        <section id="drawings" class="content-section">
-            <h2>FACADES</h2>
-            <div class="gallery-vertical">
-                <img src="images/facade-01.png" alt="North Facade" class="expandable">
-                <img src="images/facade-02.png" alt="East Facade" class="expandable">
-                <img src="images/facade-03.png" alt="South Facade" class="expandable">
-                <img src="images/facade-04.png" alt="West Facade" class="expandable">
-            </div>
-        </section>
-
-        <section id="plans" class="content-section">
-            <h2>SECTIONS & PLANS</h2>
-            <div class="gallery-vertical">
-                <img src="images/section-01.png" alt="Cross Section AA" class="expandable">
-                <img src="images/section-02.png" alt="Longitudinal Section BB" class="expandable">
-                <img src="images/plan-01.png" alt="Ground Floor Plan" class="expandable">
-                <img src="images/plan-02.png" alt="First Floor Plan" class="expandable">
-                <img src="images/plan-03.png" alt="Roof Plan" class="expandable">
-                <img src="images/plan-04.png" alt="Site Plan" class="expandable">
-            </div>
-        </section>
-
-        <!-- INFO SECTION -->
-        <section id="info" class="content-section">
-            <div class="info-content">
+        <!-- 2. INFO SECTION -->
+        <section id="info">
+             <div class="info-panel">
                 <h2>INFO</h2>
                 <p><strong>Project:</strong> The Pavilion</p>
-                <p><strong>Location:</strong> Fictional Site, Earth</p>
-                <p><strong>Architect:</strong> Elemental Architecture</p>
-                <p><strong>Year:</strong> 2024</p>
+                <p><strong>Location:</strong> Poznan, Poland</p>
+                <p><strong>Author:</strong> Jakub Chojnacki</p>
+                <p><strong>Year:</strong> 2025</p>
+                <p class="description">
+                    The Pavilion is envisioned as a contemporary space for reflection and assembly, exploring the interplay of light, structure, and natural materials. Its design prioritizes a minimal environmental footprint while creating a powerful, monolithic presence. The structure serves as both a destination and a journey, guiding visitors through a carefully choreographed sequence of open and enclosed spaces that frame views of the surrounding landscape.
+                </p>
             </div>
         </section>
 
-        <!-- ABOUT SECTION (NEW) -->
-        <section id="about" class="content-section">
-            <div class="info-content">
+        <!-- 3. MAIN PROJECT CONTENT SECTION -->
+        <section id="project">
+            <div class="content-wrapper">
+                
+                <h3 id="visualizations">VISUALIZATIONS</h3>
+                <div class="gallery-vertical">
+                    <img src="images/viz-01.jpg" loading="lazy" alt="Visualization of the Pavilion exterior" class="expandable">
+                    <img src="images/viz-02.jpg" loading="lazy" alt="Visualization of the Pavilion interior" class="expandable">
+                </div>
+                
+                <h3 id="facades">FACADES</h3>
+                <div class="gallery-vertical">
+                    <img src="images/facade-01.png" loading="lazy" alt="North Facade" class="expandable">
+                    <img src="images/facade-02.png" loading="lazy" alt="East Facade" class="expandable">
+                    <img src="images/facade-03.png" loading="lazy" alt="South Facade" class="expandable">
+                    <img src="images/facade-04.png" loading="lazy" alt="West Facade" class="expandable">
+                </div>
+
+                <h3 id="sections">SECTIONS</h3>
+                <div class="gallery-vertical">
+                    <img src="images/section-01.png" loading="lazy" alt="Cross Section AA" class="expandable">
+                    <img src="images/section-02.png" loading="lazy" alt="Longitudinal Section BB" class="expandable">
+                </div>
+
+                <h3 id="plans">PLANS</h3>
+                <div class="gallery-vertical plans">
+                    <img src="images/plan-04.png" loading="lazy" alt="Site Plan" class="expandable">
+                    <img src="images/plan-basement.png" loading="lazy" alt="Basement Plan" class="expandable">
+                    <img src="images/plan-01.png" loading="lazy" alt="Ground Floor Plan" class="expandable">
+                    <img src="images/plan-02.png" loading="lazy" alt="First Floor Plan" class="expandable">
+                    <img src="images/plan-second-floor.png" loading="lazy" alt="Second Floor Plan" class="expandable">
+                    <img src="images/plan-03.png" loading="lazy" alt="Roof Plan" class="expandable">
+                </div>
+
+                <h3 id="details">DETAILS</h3>
+                <div class="gallery-vertical details">
+                    <img src="images/detail-truss-01.png" loading="lazy" alt="Truss Detail" class="expandable">
+                    <img src="images/detail-truss-02.png" loading="lazy" alt="Truss Connection Detail" class="expandable">
+                </div>
+
+                <h3 id="sketches">SKETCHES</h3>
+                 <!-- 7. This container will be filled dynamically by JavaScript -->
+                 <div class="gallery-vertical" id="sketches-gallery"></div>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about">
+            <div class="info-panel">
                 <h2>ABOUT</h2>
                 <p>
-                    Elemental Architecture is a design studio focused on creating visionary structures
-                    that blend aesthetics, functionality, and sustainability. We believe in timeless design
-                    that respects its context and is built for the future.
+                    Jakub Chojnacki is a designer focused on creating visionary structures
+                    that blend aesthetics, functionality, and sustainability. This portfolio showcases a
+                    belief in timeless design that respects its context and is built for the future.
                 </p>
             </div>
         </section>
     </main>
     
-    <!-- LIGHTBOX HTML (NEW) -->
+    <!-- LIGHTBOX HTML -->
     <div class="lightbox" id="lightbox">
-        <span class="lightbox-close">×</span>
-        <img src="" alt="Expanded View" class="lightbox-image">
+        <img src="" alt="Expanded View">
     </div>
 
-
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- LIGHTBOX SCRIPT (NEW) ---
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImage = lightbox.querySelector('.lightbox-image');
-            const expandableImages = document.querySelectorAll('.expandable');
-            const lightboxClose = document.querySelector('.lightbox-close');
+    document.addEventListener('DOMContentLoaded', () => {
 
-            expandableImages.forEach(image => {
-                image.addEventListener('click', () => {
-                    lightboxImage.src = image.src;
-                    lightbox.classList.add('active');
-                });
+        // --- 7. Dynamic Content Generation ---
+        // An array of objects holds the data for our gallery
+        const sketchData = [
+            { src: 'images/sketch-01.png', alt: 'Early concept sketch' },
+            { src: 'images/sketch-02.png', alt: 'Development sketch' }
+        ];
+
+        const sketchesGallery = document.getElementById('sketches-gallery');
+
+        // Loop through the data and create an image element for each item
+        sketchData.forEach(item => {
+            const img = document.createElement('img');
+            img.src = item.src;
+            img.alt = item.alt;
+            img.loading = 'lazy'; // Also apply lazy loading to dynamic images
+            img.classList.add('expandable');
+            sketchesGallery.appendChild(img);
+        });
+
+
+        // --- 1. Finished Lightbox Functionality ---
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = lightbox.querySelector('img');
+
+        // Function to open the lightbox
+        const openLightbox = (imgElement) => {
+            lightbox.classList.add('active');
+            lightboxImage.src = imgElement.src;
+            lightboxImage.alt = imgElement.alt; // Set alt text for accessibility
+        };
+
+        // Function to close the lightbox
+        const closeLightbox = () => {
+            lightbox.classList.remove('active');
+            // Clear src after transition to prevent flashes of old content
+            setTimeout(() => {
+                lightboxImage.src = '';
+                lightboxImage.alt = '';
+            }, 300);
+        };
+
+        // Attach event listeners to all images with the 'expandable' class
+        // This is run *after* the dynamic sketches have been added to the DOM
+        document.querySelectorAll('.expandable').forEach(img => {
+            img.addEventListener('click', () => {
+                openLightbox(img);
             });
+        });
 
-            const closeLightbox = () => {
-                lightbox.classList.remove('active');
-                // Optional: clear src after transition to prevent loading flash
-                setTimeout(() => { lightboxImage.src = ''; }, 300);
-            };
+        // Close lightbox on click (anywhere on the overlay or image)
+        lightbox.addEventListener('click', closeLightbox);
 
-            // Close by clicking the 'X' button
-            lightboxClose.addEventListener('click', closeLightbox);
 
-            // Close by clicking on the background (but not the image itself)
-            lightbox.addEventListener('click', (e) => {
-                if (e.target !== lightboxImage) {
-                    closeLightbox();
+        // --- 5. Keyboard Accessibility ---
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "Escape" && lightbox.classList.contains('active')) {
+                closeLightbox();
+            }
+        });
+
+
+        // --- 6. Highlight Active Section in Navigation ---
+        const sectionsToObserve = document.querySelectorAll('h3[id], section#about');
+        const navLinks = document.querySelectorAll('.main-header nav a');
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '-30% 0px -60% 0px', // Activates when item is in the upper part of the viewport
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            let latestIntersectingEntry = null;
+
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    latestIntersectingEntry = entry;
                 }
             });
 
-
-            // --- NAVIGATION HIGHLIGHT SCRIPT (UPDATED) ---
-            const sections = document.querySelectorAll('.content-section, #hero');
-            const navLinks = document.querySelectorAll('.main-header nav a');
-
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.5 // trigger when 50% of the section is visible
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const visibleSectionId = entry.target.id;
-                        navLinks.forEach(link => link.classList.remove('active'));
-
-                        let targetLink;
-                        // Map multiple sections to a single nav link
-                        if (['closeups', 'plans'].includes(visibleSectionId)) {
-                             targetLink = document.querySelector(`a[href="#drawings"]`);
-                        } else {
-                             targetLink = document.querySelector(`a[href="#${visibleSectionId}"]`);
-                        }
-
-                        if (targetLink) {
-                            targetLink.classList.add('active');
-                        }
+            if (latestIntersectingEntry) {
+                 const visibleId = latestIntersectingEntry.target.id;
+                 navLinks.forEach(link => {
+                    if (link.href.endsWith(`#${visibleId}`)) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
                     }
                 });
-            }, observerOptions);
+            }
+        }, observerOptions);
 
-            sections.forEach(section => {
-                observer.observe(section);
-            });
+        sectionsToObserve.forEach(section => {
+            observer.observe(section);
         });
+    });
     </script>
 </body>
 </html>
